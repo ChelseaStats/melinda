@@ -7,8 +7,10 @@ define('TW_KEY3'	, '[redacted]');
 define('TW_KEY4'	, '[redacted]');
 
 // PHP INI
-ini_set('sendmail_from', 'noreply@domain.uk');
-
+ini_set('sendmail_from'	, 'noreply@domain.uk');
+ini_set('smtp_server'	, 'mail.domain.uk');
+ini_set('smtp_port'	, '26');
+ini_set('smtp_ssl'	, 'none');
 
 // USAGE
 $melinda = new messenger();
