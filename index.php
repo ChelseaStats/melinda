@@ -5,6 +5,10 @@ define('TW_KEY1'	, '[redacted]');
 define('TW_KEY2'	, '[redacted]');
 define('TW_KEY3'	, '[redacted]');
 define('TW_KEY4'	, '[redacted]');
+define('MAIL_SERVER'	, '[redacted]');
+define('MAIL_PORT'	, '[redacted]');
+define("MAIL_AUTH"	, '[redacted]');
+
 
 // USAGE
 $melinda = new messenger();
