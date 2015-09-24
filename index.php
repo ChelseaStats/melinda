@@ -46,7 +46,7 @@ class messenger() {
 			return $result;
 		}		
 
-		public static function email( $message, $title, $email = 'noreply@domain.uk ) {
+		public static function email( $message, $title, $email = 'noreply@domain.uk' ) {
 			wp_mail( $email, 'New: ' . $title, $message );
 		}
 		
