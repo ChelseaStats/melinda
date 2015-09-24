@@ -53,7 +53,8 @@ class messenger {
 
 		public static function email( $message, $title, $email = 'noreply@domain.uk' ) {
 			
-		//	mail($to,$from,$subject,$headers,$body);
+			$header = "From: ". $Name . " <" . $email . ">\r\n";
+			mail($recipient, $subject, $mail_body, $header);
 			// if WP
 		//	wp_mail( $email, $title, $message );
 		}
