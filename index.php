@@ -5,6 +5,9 @@ define('TW_KEY1'	, '[redacted]');
 define('TW_KEY2'	, '[redacted]');
 define('TW_KEY3'	, '[redacted]');
 define('TW_KEY4'	, '[redacted]');
+define('HOOKS_API_ID'	, '[redacted]');
+define('HOOKS_API_KEY'	, '[redacted]');
+
 
 // PHP INI
 ini_set('sendmail_from'	, 'noreply@domain.uk');
@@ -18,6 +21,7 @@ $melinda->slack($message, $botName, $emoji, $room);
 $melinda->twitter($message, $user);
 $melinda->email($message, $title, $toAddress);
 $melinda->screen($message, $alertBoostrapColor);
+$go->hooks($message, $short_url, HOOKS_API_ID , HOOKS_API_KEY);
 
 // CLASS
 class messenger {
@@ -62,6 +66,29 @@ class messenger {
 				wp_mail($email, $title, $message);
 			}
 		}
+		
+		public static function hooks($message, $url, $id, $key){
+
+			$data =  json_encode(array(
+			      "message" => $message,
+			      "url" =>  $url
+			    ));
+	    
+			    $ch = curl_init();
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+			    curl_setopt($ch, CURLOPT_URL, "https://api.gethooksapp.com/v1/push/".$id);
+			    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "Hooks-Authorization: ".$key ));
+			    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+			    curl_setopt($ch, CURLOPT_POST, TRUE);
+			    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+			    $response = curl_exec($ch);
+			    curl_close($ch);
+    
+        		return $response;
+
+		}
+		
 		
 		public static function screen( $message, $alert ) {
 			
